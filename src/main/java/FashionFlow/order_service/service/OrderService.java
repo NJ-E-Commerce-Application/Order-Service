@@ -31,14 +31,19 @@ public class OrderService {
             order.setQuantity(orderRequest.quantity());
             orderRepository.save(order);
 
-            //send the msg to kafka topic
+            /*
+send the msg to kafka topic
             OrderPlacedEvent orderPlacedEvent=new OrderPlacedEvent(order.getOrderNumber(),orderRequest.userDetails().email());
             //we are sending string and the value
             log.info("start of sending the orderplacedevent {} to the kafka topic" ,orderPlacedEvent);
-            kafkaTemplate.send("order_placed",orderPlacedEvent);
+            try{
+                kafkaTemplate.send("order_placed",orderPlacedEvent);
+            }catch (Exception e){
+                System.out.println("Error occured in "+ e);
+            }
             log.info("end of sending the orderplacedevent {} to the kafka topic" ,orderPlacedEvent);
 
-
+*/
 
 
         } else {
